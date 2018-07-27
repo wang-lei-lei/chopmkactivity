@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmos.chopmkactivity.dao.dept.DeptDAO" >
+  <resultMap id="BaseResultMap" type="com.cmos.chopmkactivity.beans.dept.Dept" >
+    <id column="deptno" property="deptno" jdbcType="DECIMAL" />
+    <result column="dname" property="dname" jdbcType="VARCHAR" />
+    <result column="loc" property="loc" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dept
+    where deptno = #{deptno,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.cmos.chopmkactivity.beans.dept.Dept" >
+    insert into dept (deptno, dname, loc
+    )
+    values (#{deptno,jdbcType=DECIMAL}, #{dname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}
+    )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cmos.chopmkactivity.beans.dept.Dept" >
+    update dept
+    set dname = #{dname,jdbcType=VARCHAR},
+    loc = #{loc,jdbcType=VARCHAR}
+    where deptno = #{deptno,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select deptno, dname, loc
+    from dept
+    where deptno = #{deptno,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select deptno, dname, loc
+    from dept
+  </select>
+  <select id="getByDname" resultType="com.cmos.chopmkactivity.beans.dept.Dept">
+    select deptno, dname, loc
+    from dept
+    where dname = #{dname,jdbcType=VARCHAR}
+  </select>
+</mapper>
